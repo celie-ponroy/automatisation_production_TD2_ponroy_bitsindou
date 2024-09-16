@@ -13,4 +13,4 @@ jobs:
       with:
         version: 9.6.1
         php_version: '8.2'
-        php_extensions: sqlite gd
+        php_extensions: sqlite3 gd
