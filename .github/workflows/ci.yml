@@ -10,5 +10,5 @@ jobs:
     - uses: actions/checkout@v3
     - uses: php-actions/composer@v6 #or alternative dependency management
     - uses: php-actions/phpunit@v3
-      with:  
+      with:   
         php_extensions: sqlite gd
