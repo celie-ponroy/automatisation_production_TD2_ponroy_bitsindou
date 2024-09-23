@@ -28,8 +28,7 @@ jobs:
       with:
         version: 9.6.1
         php_version: '8.2'
-        php_extensions: sqlite3 gd 
-        coverage: xdebug2
+        php_extensions: sqlite3 gd xdebug2
     - uses: irongut/CodeCoverageSummary@v1.3.0
       with:
         filename: log/cobertura.xml
