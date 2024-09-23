@@ -31,7 +31,7 @@ jobs:
         php_extensions: sqlite3 gd
     - uses:  irongut/CodeCoverageSummary@v1.3.0
       with:
-        filename: log/cobertura.xml
+        filename: coverage/cobertura.xml
         badge: true
         fail_below_min: true
         format: markdown
@@ -40,3 +40,4 @@ jobs:
         indicators: true
         output: both
         thresholds: '60 80'
+    - run: cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
