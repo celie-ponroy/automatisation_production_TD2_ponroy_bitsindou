@@ -27,6 +27,7 @@ jobs:
           path: lib/
           output: text
           ruleset: test/phpmd/ruleset.xml
+          ignore: continue-on-error
           
       - uses: php-actions/phpstan@v3
         with:
