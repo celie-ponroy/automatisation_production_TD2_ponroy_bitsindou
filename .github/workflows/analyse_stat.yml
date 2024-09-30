@@ -1,0 +1,33 @@
+name: CI Analyse Statique
+
+on: [push]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: php-actions/phpstan@v3
+        with:
+          path: lib/
+
+      - name: Composer install
+        uses: php-actions/composer@v6
+
+      - name: PHP Code Sniffer
+        uses: php-actions/phpcs@v1
+        with:
+          php_version: 8.1
+          path: lib/
+          standard: phpcs.xml
+          
+      - name: PHP Mess Detector
+        uses: php-actions/phpmd@v1
+        with:
+          php_version: 8.1
+          path: lib/
+          output: text
+          ruleset: test/phpmd/ruleset.xml
+
+      
