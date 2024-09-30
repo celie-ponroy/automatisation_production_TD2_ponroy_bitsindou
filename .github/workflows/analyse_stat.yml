@@ -8,9 +8,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: php-actions/phpstan@v3
-        with:
-          path: lib/
+
 
       - name: Composer install
         uses: php-actions/composer@v6
@@ -29,5 +27,9 @@ jobs:
           path: lib/
           output: text
           ruleset: test/phpmd/ruleset.xml
+          
+      - uses: php-actions/phpstan@v3
+        with:
+          path: lib/
 
       
