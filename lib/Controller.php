@@ -206,7 +206,7 @@ class Controller
             TrafficLimiter::canPass();
         } catch (Exception $e) {
             $this->_returnMessage(1, $e->getMessage());
-            return "";
+            return $this->_returnMessage(1, $e->getMessage());;
         }
 
         $data      = $this->_request->getData();
@@ -216,7 +216,7 @@ class Controller
             !empty($data['parentid']);
         if (!FormatV2::isValid($data, $isComment)) {
             $this->_returnMessage(1, I18n::_('Invalid data.'));
-            return "";
+            return $this->_returnMessage(1, $e->getMessage());;
         }
         $sizelimit = $this->_conf->getKey('sizelimit');
         // Ensure content is not too big.
@@ -228,7 +228,7 @@ class Controller
                     Filter::formatHumanReadableSize($sizelimit)
                 )
             );
-            return "";
+            return $this->_returnMessage(1, $e->getMessage());;
         }
 
         // The user posts a comment.
@@ -241,7 +241,7 @@ class Controller
                     $comment->store();
                 } catch (Exception $e) {
                     $this->_returnMessage(1, $e->getMessage());
-                    return "";
+                    return $this->_returnMessage(1, $e->getMessage());;
                 }
                 $this->_returnMessage(0, $comment->getId());
             } else {
