@@ -205,8 +205,8 @@ class Controller
         try {
             TrafficLimiter::canPass();
         } catch (Exception $e) {
-            return $this->_returnMessage(1, $e->getMessage());
-            //return;
+            $this->_returnMessage(1, $e->getMessage());
+            return;
         }
 
         $data      = $this->_request->getData();
@@ -215,20 +215,20 @@ class Controller
             array_key_exists('parentid', $data) &&
             !empty($data['parentid']);
         if (!FormatV2::isValid($data, $isComment)) {
-            return $this->_returnMessage(1, I18n::_('Invalid data.'));
-            //return;
+            $this->_returnMessage(1, I18n::_('Invalid data.'));
+            return;
         }
         $sizelimit = $this->_conf->getKey('sizelimit');
         // Ensure content is not too big.
         if (strlen($data['ct']) > $sizelimit) {
-            return $this->_returnMessage(
+            $this->_returnMessage(
                 1,
                 I18n::_(
                     'Paste is limited to %s of encrypted data.',
                     Filter::formatHumanReadableSize($sizelimit)
                 )
             );
-            //return;
+            return;
         }
 
         // The user posts a comment.
@@ -240,8 +240,8 @@ class Controller
                     $comment->setData($data);
                     $comment->store();
                 } catch (Exception $e) {
-                    return $this->_returnMessage(1, $e->getMessage());
-                    //return;
+                    $this->_returnMessage(1, $e->getMessage());
+                    return;
                 }
                 $this->_returnMessage(0, $comment->getId());
             } else {
@@ -260,6 +260,7 @@ class Controller
             }
             $this->_returnMessage(0, $paste->getId(), array('deletetoken' => $paste->getDeleteToken()));
         }
+        return "";
     }
 
     /**
