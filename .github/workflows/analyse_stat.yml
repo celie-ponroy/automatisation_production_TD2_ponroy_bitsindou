@@ -28,7 +28,7 @@ jobs:
           php_version: 8.1
           path: lib/
           output: text
-          ruleset: test/phpmd/ruleset.xml
+          ruleset: tst/phpmd/ruleset.xml
           
       - uses: php-actions/phpstan@v3
         continue-on-error: true
