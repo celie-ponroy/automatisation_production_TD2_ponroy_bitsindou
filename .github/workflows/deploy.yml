@@ -1,10 +1,9 @@
 name: Deploy to FTP
 
-# Déclenchement du workflow lors des push sur la branche 'main'
 on:
   push:
     branches:
-      - main
+      - main  # Ce workflow s'exécute à chaque push sur la branche 'main'
 
 jobs:
   ftp-deploy:
@@ -20,9 +19,9 @@ jobs:
     - name: FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
-        server: ${{ secrets.FTP_SERVER }}  # Utilise le secret pour l'URL du serveur FTP
-        username: ${{ secrets.FTP_USERNAME }}  # Utilise le secret pour le nom d'utilisateur
-        password: ${{ secrets.FTP_PASSWORD }}  # Utilise le secret pour le mot de passe
+        server: ${{ secrets.FTP_SERVER }}  # Utilise le secret pour l'adresse IP du serveur FTP
+        username: ${{ secrets.FTP_USERNAME }}  # Utilise le secret pour l'identifiant FTP
+        password: ${{ secrets.FTP_PASSWORD }}  # Utilise le secret pour le mot de passe FTP
         local-dir: ./  # Le répertoire local à déployer (racine du dépôt)
         server-dir: /www/  # Répertoire distant où déployer (dans 'www')
-        exclude: .github/  # Exclure le répertoire des workflows
+        exclude: .github/  # Exclure les fichiers de workflow
