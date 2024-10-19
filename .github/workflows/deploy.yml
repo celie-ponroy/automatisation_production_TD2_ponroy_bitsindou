@@ -6,13 +6,13 @@ on:
       - main  # Déclenchement sur la branche 'main'
 
 jobs:
-  web-deploy:
-    name: Deploy
+  ftp-deploy:
+    name: FTP Deploy
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v3
 
     - name: FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
@@ -20,7 +20,7 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}  # Adresse IP du serveur FTP
         username: ${{ secrets.FTP_USERNAME }}  # Identifiant FTP
         password: ${{ secrets.FTP_PASSWORD }}  # Mot de passe FTP
-        protocol: ftps
         local-dir: ./  # Répertoire local à déployer
         server-dir: /www/  # Répertoire distant pour le déploiement
         exclude: .github/  # Exclure le dossier .github
+        protocol: ftps  # Utiliser le protocole FTPS si nécessaire
